@@ -31,6 +31,10 @@
       <div *ngIf="loginFailed" class="mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-md">
         Invalid username or password. Please try again.
       </div>
+
+      <div *ngIf="serverOffline" class="mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-md">
+        Server is offline. Please try again later.
+      </div>
     </form>
   </div>
 </div>

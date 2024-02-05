@@ -6,11 +6,12 @@ import {Router} from "@angular/router";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   loginForm: FormGroup;
   loginFailed: boolean = false;
+  serverOffline: boolean = false;
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.fb.group({
@@ -29,7 +30,12 @@ export class LoginComponent {
         },
         error: error => {
           console.error('Login failed', error);
-          this.loginFailed = true;
+
+          if (error.status === 0) {
+            this.serverOffline = true;
+          } else {
+            this.loginFailed = true;
+          }
         }
       });
     }
